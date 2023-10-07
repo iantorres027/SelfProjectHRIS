@@ -1,0 +1,240 @@
+﻿@model ReportFilterModel
+
+@{
+
+    ViewData["Title"] = "Transaction List";
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                    <li class="breadcrumb-item active">@ViewData["Title"]</li>
+                </ol>
+            </div>
+            <h4 class="page-title">@ViewData["Title"]</h4>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+
+
+<div class="row">
+    <div class="col-md-6 col-xl-3">
+        <div class="widget-rounded-circle card bg-purple shadow-none">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="avatar-lg rounded-circle bg-soft-light">
+                            <i class="mdi mdi-cash-check font-28 avatar-title text-white"></i>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="text-end">
+                            <h2 class="text-white mt-2" id="info_total_ap"><span data-plugin="counterup">0</span></h2>
+                            <p class="text-white mb-0 text-truncate">Total AP</p>
+                        </div>
+                    </div>
+                </div> <!-- end row-->
+
+                <a href="#" id="dash_link_total_ap" data-val="" class="stretched-link"></a>
+            </div>
+        </div> <!-- end widget-rounded-circle-->
+    </div> <!-- end col-->
+
+    <div class="col-md-6 col-xl-3">
+        <div class="widget-rounded-circle card bg-info shadow zoom">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="avatar-lg rounded-circle bg-soft-light">
+                            <i class="mdi mdi-redo font-28 avatar-title text-white"></i>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="text-end">
+                            <h2 class="text-white mt-2" id="info_total_pending"><span data-plugin="counterup">0</span></h2>
+                            <p class="text-white mb-0 text-truncate">Pending</p>
+                        </div>
+                    </div>
+                </div> <!-- end row-->
+            </div>
+
+            <a href="#" id="dash_link_total_pending" data-val="Pending" class="stretched-link"></a>
+        </div> <!-- end widget-rounded-circle-->
+    </div> <!-- end col-->
+
+    <div class="col-md-6 col-xl-3">
+        <div class="widget-rounded-circle card bg-warning shadow zoom">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="avatar-lg rounded-circle bg-soft-light">
+                            <i class="mdi mdi-cash-plus font-28 avatar-title text-white"></i>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="text-end">
+                            <h2 class="text-white mt-2" id="info_partially_paid"><span data-plugin="counterup">0</span></h2>
+                            <p class="text-white mb-0 text-truncate">Partially Paid</p>
+                        </div>
+                    </div>
+                </div> <!-- end row-->
+            </div>
+
+            <a href="#" id="dash_link_partially_paid" data-val="Partially Paid" class="stretched-link"></a>
+        </div> <!-- end widget-rounded-circle-->
+    </div> <!-- end col-->
+
+    <div class="col-md-6 col-xl-3">
+        <div class="widget-rounded-circle card bg-success shadow zoom">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="avatar-lg rounded-circle bg-soft-light">
+                            <i class="mdi mdi-check-bold font-28 avatar-title text-white"></i>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="text-end">
+                            <h2 class="text-white mt-2" id="info_total_paid"><span data-plugin="counterup">0</span></h2>
+                            <p class="text-white mb-0 text-truncate">Fully Paid</p>
+                        </div>
+                    </div>
+                </div> <!-- end row-->
+            </div>
+            <a href="#" id="dash_link_fully_paid" data-val="Fully Paid" class="stretched-link"></a>
+        </div> <!-- end widget-rounded-circle-->
+    </div> <!-- end col-->
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-9 mb-2 align-items-md-center">
+                        <a asp-action="Create" class="btn btn-light btn-sm waves-effect mb-sm-2" id="btn_add"><span class="fe-plus"></span> Create</a>
+                        <button class="btn btn-light btn-sm waves-effect mb-sm-2" id="btn_edit" disabled><span class="fe-edit"></span> Edit</button>
+                        <button class="btn btn-light btn-sm waves-effect mb-sm-2" id="btn_detail" disabled><span class="fe-file-text"></span> Details</button>
+
+                        <button class="btn btn-light btn-sm waves-effect mb-sm-2" id="btn_refresh" disabled><span class="fe-refresh-cw"></span> Refresh</button>
+                        <div class="btn-group  mb-sm-2">
+                            <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="true"> Other Actions </button>
+                            <div class="dropdown-menu" data-popper-placement="bottom-start">
+                                <button class="dropdown-item" id="btn_memorize" data-bs-toggle="modal" data-bs-target="#memorizedModal" disabled><span class="mdi mdi-zip-box-outline"></span> Memorize</button>
+                                <button class="dropdown-item" id="btn_history" disabled><span class="mdi mdi-history"></span> History</button>
+                                <button class="dropdown-item" id="btn_copy" disabled><span class="fe-copy"></span> Copy</button>
+                                <button class="dropdown-item" id="btn_generate_report" data-link="@Url.Content("~/AccountsPayable/AccountPayableDownload")"><span class="fe-download"></span> Export to Excel</button>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <div class="input-group float-end" style="width:250px;">
+                            <input id="txt_search" type="search" class="form-control form-control-sm" placeholder="Search..." />
+                            <button type="button" class="input-group-text" data-bs-toggle="modal" data-bs-target="#filterModal"><i class="fe-filter"></i></button>
+                            <span class="input-group-text"><i class="fe-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive text-sm">
+                    <table class="table table-bordered table-sm nowrap w-100" id="tbl_ap">
+                        <thead class="table-light text-center">
+                            <tr>
+                                <th style="min-width:15px;" class="align-middle">
+                                    <input class="form-check-input" type="checkbox" id="select-all" />
+                                </th>
+                                <th>Status</th>
+                                <th>Journal Status</th>
+                                <th>Transaction No.</th>
+                                <th>Date</th>
+                                <th>Project</th>
+                                <th>Vendor</th>
+                                <th>Gross Amount</th>
+                                <th>VAT Amount</th>
+                                <th>EWT Amount</th>
+                                <th>Net Amount</th>
+                                <th>Particulars</th>
+                                <th>Prepared By</th>
+                                <th>Date Created</th>
+                                <th>Modified By</th>
+                                <th>Date Modified</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-soft-light border-bottom">
+                <h5 class="modal-title" id="filterModalLabel"><span class="fas fa-filter me-1"></span> Accounts Payable Filter</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="frm_filter">
+                    <div class="mb-2" id="date_range_1"></div>
+                    <div class="mb-2" id="date_picker_div">
+                        <div class="input-group mb-3">
+                            <input asp-for="DateFrom"
+                                   class="form-control flatpickr-unwrap"
+                                   placeholder="mm/dd/yyyy"
+                                   autocomplete="new-password"
+                                   data-inputmask-alias="datetime"
+                                   data-inputmask-inputformat="mm/dd/yyyy"
+                                   data-mask=""
+                                   inputmode="numeric">
+                            <span class="input-group-text">to</span>
+                            <input asp-for="DateTo"
+                                   class="form-control flatpickr-unwrap"
+                                   placeholder="mm/dd/yyyy"
+                                   autocomplete="new-password"
+                                   data-inputmask-alias="datetime"
+                                   data-inputmask-inputformat="mm/dd/yyyy"
+                                   data-mask=""
+                                   inputmode="numeric">
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label asp-for="PreparedBy" class="form-label"></label>
+                        <select asp-for="PreparedBy" class="" multiple>
+                            <option value="">Select Type...</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer bg-soft-light border-top">
+                <button type="button" class="btn btn-secondary" id="btn_clear_filter">Clear</button>
+                <button type="button" id="btn_apply_filter" class="btn btn-primary"><span class="fa fa-search"></span> Search</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Links{
+    <link href="~/CodeFox4/libs/selectize/css/selectize.bootstrap5.css" rel="stylesheet" type="text/css" />
+    <link href="~/CodeFox4/libs/jquery-contextmenu/jquery.contextMenu.min.css" rel="stylesheet" type="text/css" />
+}
+
+@section Scripts {
+    <script src="~/CodeFox4/libs/selectize/js/standalone/selectize.min.js"></script>
+    <script src="~/CodeFox4/libs/inputmask/jquery.inputmask.min.js"></script>
+    <script src="~/CodeFox4/libs/jquery-contextmenu/jquery.contextMenu.min.js"></script>
+    <script src="~/CodeFox4/libs/jquery-contextmenu/jquery.ui.position.js"></script>
+
+    <script src="~/js/Utilities/TransactionTimelineScript.js" asp-append-version="true"></script>
+    <script src="~/js/Utilities/JournalPostingScript.js" asp-append-version="true"></script>
+    <script src="~/js/Utilities/DateRangeScript.js" asp-append-version="true"></script>
+    <script src="~/js/Transaction/MemorizedTransaction/MemorizedModalScript.js" asp-append-version="true"></script>
+    <script src="~/js/Transaction/AccountsPayable/ApListScript.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,94 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <DefaultItemExcludes>Reports\**</DefaultItemExcludes>
+    <UserSecretsId>c26d723b-b559-4574-8aeb-298541014634</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <DockerfileContext>..\..</DockerfileContext>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Reports\**" />
+    <Compile Remove="wwwroot\css\icons\**" />
+    <Compile Remove="wwwroot\lib\moment-countdown\**" />
+    <Content Remove="Reports\**" />
+    <Content Remove="wwwroot\css\icons\**" />
+    <Content Remove="wwwroot\lib\moment-countdown\**" />
+    <EmbeddedResource Remove="Reports\**" />
+    <EmbeddedResource Remove="wwwroot\css\icons\**" />
+    <EmbeddedResource Remove="wwwroot\lib\moment-countdown\**" />
+    <None Remove="Reports\**" />
+    <None Remove="wwwroot\css\icons\**" />
+    <None Remove="wwwroot\lib\moment-countdown\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Data\nwind.db" />
+    <None Remove="Data\reportsData.db" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\nwind.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="wwwroot\lib\custom-timeline\.vscode\settings.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Data\nwind.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="node_modules\**" />
+    <Content Remove="node_modules\**" />
+    <EmbeddedResource Remove="node_modules\**" />
+    <None Remove="node_modules\**" />
+  </ItemGroup>
+  <Target Name="DebugEnsureNodeEnv" BeforeTargets="LibraryManagerRestore" Condition="!Exists('node_modules') ">
+    <!-- Ensure Node.js is installed -->
+    <Exec Command="node --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+    <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+    <Exec Command="npm install" />
+  </Target>
+  <ItemGroup>
+    <Content Remove="runtimeconfig.template.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="runtimeconfig.template.json" />
+    <None Include="Views\Account\Login.cshtml" />
+    <None Include="Views\Home\Error.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\Privacy.cshtml" />
+    <None Include="Views\Module\Index.cshtml" />
+    <None Include="Views\Report\Designer.cshtml" />
+    <None Include="Views\Report\Viewer.cshtml" />
+    <None Include="Views\Shared\BadRequestPage.cshtml" />
+    <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\NotFoundPage.cshtml" />
+    <None Include="Views\Shared\_AuthenticationLayout.cshtml" />
+    <None Include="Views\Shared\_CulturePartial.cshtml" />
+    <None Include="Views\Shared\_Footer.cshtml" />
+    <None Include="Views\Shared\_SidebarLayout.cshtml" />
+    <None Include="Views\Shared\_Layout2.cshtml" />
+    <None Include="Views\Shared\_Sidebar.cshtml" />
+    <None Include="Views\Shared\_ThemeSettings.cshtml" />
+    <None Include="Views\Shared\_Topbar.cshtml" />
+    <None Include="wwwroot\js\Setup\Account\LoginScript.js" />
+    <None Include="wwwroot\lib\custom-timeline\scss\timeline-custom.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.8" />
+    <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
+    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.175" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Application\Template.Application.csproj" />
+    <ProjectReference Include="..\Infrastructure\Template.Infrastructure.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\template\" />
+  </ItemGroup>
+</Project>

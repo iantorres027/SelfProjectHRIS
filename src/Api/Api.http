@@ -1,0 +1,7 @@
+﻿@Api_HostAddress = "https://localhost:54310/"
+
+GET {{Api_HostAddress}}/weatherforecast
+
+###
+GET {{Api_HostAddress}}/weatherforecast
+###

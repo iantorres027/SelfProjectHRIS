@@ -1,0 +1,74 @@
+﻿@inject IStringLocalizer<SharedResources> localizer
+
+@{
+    ViewData["MainTitle"] = localizer["MNL Template"];
+}
+
+<!DOCTYPE html>
+<html lang="en" data-layout="topnav">
+
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] | @ViewData["MainTitle"]</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="MNLeistung.de" name="author" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="~/favico.png">
+
+    <!-- Thirdparty css -->
+    @RenderSection("Links", false)
+
+    <link rel="stylesheet" href="~/css/site.thirdparty.bundle.css" id="app-style" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+
+<body>
+    <input type="hidden" id="txtBaseUrl" value="@(@Url.Content("~"))/" />
+
+    <!-- Begin page -->
+    <div id="wrapper">
+
+        <!-- ========== Topbar Start ========== -->
+        <partial name="_Topbar" />
+        <!-- ========== Topbar End ========== -->
+        <!-- ========== Horizontal Menu Start ========== -->
+        <partial name="_TopNav" />
+        <!-- ========== Horizontal Menu End ========== -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
+        <div class="content-page">
+            <div class="content">
+                <!-- Start Content-->
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+                <!-- container -->
+            </div> 
+            <!-- content -->
+            <!-- Footer Start -->
+            <partial name="_Footer" />
+            <!-- end Footer -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- END wrapper -->
+    <!-- Theme Settings -->
+    <partial name="_ThemeSettings" />
+
+    <!-- Thirdparty js -->
+    <script src="~/js/site.thirdparty.bundle.js" asp-append-version="true"></script>
+    <script src="~/lib/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/longRunningTask.js" asp-append-version="true"></script>
+    <script src="~/js/sessionChecker.js" asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @*<script src="~/js/navChangeColor.js" asp-append-version="true"></script>*@
+
+    @RenderSection("Scripts", false)
+
+</body>
+
+</html>

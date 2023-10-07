@@ -1,0 +1,373 @@
+﻿@inject IStringLocalizer<SharedResources> localizer
+
+@model ModuleViewModel
+
+@{
+    ViewData["Title"] = "Module Management";
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">@localizer["Home"]</a></li>
+                    <li class="breadcrumb-item active">@ViewData["Title"]</li>
+                </ol>
+            </div>
+            <h4 class="page-title">@ViewData["Title"]</h4>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body p-0">
+                <ul class="nav nav-tabs nav-bordered">
+                    <li class="nav-item">
+                        <a href="#module-list" data-bs-toggle="tab" aria-expanded="false" class="nav-link active">
+                            <i data-feather="file" class="icon-dual"></i> Module List
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#module-type-list" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
+                            <i data-feather="file" class="icon-dual"></i> Module Types
+                        </a>
+                    </li>
+                    <li class="nav-item" hidden>
+                        <a href="#stage-approver" data-bs-toggle="tab" aria-expanded="true" class="nav-link">
+                            <i data-feather="file-text" class="icon-dual"></i> Stage Approver List
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content p-3">
+                    <div class="tab-pane fade show active" id="module-list">
+                        <div class="row">
+                            <div class="col-md-6 mb-2 align-items-md-center">
+                                <button class="btn btn-light btn-sm waves-effect" id="btn_add"><span class="fas fa-plus"></span> Add</button>
+                                <button class="btn btn-light btn-sm waves-effect" id="btn_copy" disabled><span class="fas fa-copy"></span> Copy</button>
+                                <button class="btn btn-light btn-sm waves-effect" id="btn_edit" disabled><span class="fas fa-edit"></span> Edit</button>
+                                <button class="btn btn-light btn-sm waves-effect" id="btn_delete" disabled><span class="fas fa-trash"></span> Delete</button>
+                                <button class="btn btn-light btn-sm waves-effect" id="btn_refresh"><span class="fas fa-sync"></span> Refresh</button>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="input-group float-end" style="width:250px;">
+                                    <input id="txt_search" type="search" class="form-control form-control-sm" placeholder="Search..." />
+                                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-reponsive">
+                            <table class="table table-sm table-bordered nowrap w-100" id="tbl_modules">
+                                <thead class="table-light text-center">
+                                    <tr>
+                                        <th>Module Id</th>
+                                        <th>Module Code</th>
+                                        <th>Module Description</th>
+                                        <th>Module Type</th>
+                                        <th>Approval Route Type</th>
+                                        <th>Controller/Action</th>
+                                        <th>Parent Module</th>
+                                        <th>Icon</th>
+                                        <th>Order</th>
+                                        <th>Enabled</th>
+                                        <th>Visibility</th>
+                                        <th>In Maintenance</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="module-type-list">
+                        <div class="row">
+                            <div class="col-md-6 mb-2 align-items-md-center">
+                                <button class="btn btn-light btn-sm waves-effect" id="btn_add_module_type"><span class="fas fa-plus"></span> Add</button>
+                                <button class="btn btn-light btn-sm waves-effect" id="btn_edit_module_type" disabled><span class="fas fa-edit"></span> Edit</button>
+                                <button class="btn btn-light btn-sm waves-effect" id="btn_delete_module_type" disabled><span class="fas fa-trash"></span> Delete</button>
+                                <button class="btn btn-light btn-sm waves-effect" id="btn_refresh_module_type"><span class="fas fa-sync"></span> Refresh</button>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="input-group float-end" style="width:250px;">
+                                    <input id="txt_search_module_type" type="search" class="form-control form-control-sm" placeholder="Search..." />
+                                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered nowrap w-100" id="tbl_module_type">
+                                <thead class="table-light text-center">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Description</th>
+                                        <th>Icon</th>
+                                        <th>Order</th>
+                                        <th>Controller/Action</th>
+                                        <th>Enabled</th>
+                                        <th>Visibility</th>
+                                        <th>In Maintenance</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="stage-approver">
+                        <div class="row">
+                            <div class="col-md-6 mb-2 align-items-md-center">
+                                <button class="btn btn-light btn-sm waves-effect" id="btn_add_approver"><span class="fas fa-plus"></span> Add</button>
+                                <button class="btn btn-light btn-sm waves-effect" id="btn_edit_approver" disabled><span class="fas fa-edit"></span> Edit</button>
+                                <button class="btn btn-light btn-sm waves-effect" id="btn_refresh_approver"><span class="fas fa-sync"></span> Refresh</button>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="input-group float-end" style="width:250px;">
+                                    <input id="txt_search_approver" type="search" class="form-control form-control-sm" placeholder="Search..." />
+                                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-reponsive">
+                            <table class="table table-sm table-bordered w-100" id="tbl_approver">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Module Code</th>
+                                        <th>Module Description</th>
+                                        <th>Stage Description</th>
+                                        <th>Stage Order</th>
+                                        <th>Approver/s</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Module modal content -->
+<div id="module-modal" class="modal fade" tabindex="-1" role="form"
+     aria-labelledby="module-modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-soft-light border-bottom">
+                <h4 class="modal-title" id="module-modalLabel"><span class="fas fa-plus"></span> Add Module</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form asp-action="SaveModule" asp-antiforgery="true" method="post" role="form" id="frm_module" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Module.Id" />
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4 mb-2">
+                            <label asp-for="Module.Code" class="form-label"></label>
+                            <input asp-for="Module.Code" class="form-control" placeholder="Module Code" />
+                            <span asp-validation-for="Module.Code" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label asp-for="Module.Description" class="form-label"></label>
+                            <input asp-for="Module.Description" class="form-control" placeholder="Module Description" />
+                            <span asp-validation-for="Module.Description" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label asp-for="Module.ModuleTypeId" class="form-label"></label>
+                            <select class="form-control" asp-for="Module.ModuleTypeId">
+                                <option value="">Select Module Type...</option>
+                            </select>
+                            <span asp-validation-for="Module.ModuleType" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label asp-for="Module.ApprovalRouteTypeId" class="form-label"></label>
+                            <select class="form-control selectize" asp-for="Module.ApprovalRouteTypeId" asp-items="@(new SelectList(Model.Module.ApprovalRouteTypes, "Id", "Description"))">
+                                <option value="">Select Approval Route Type...</option>
+                            </select>
+                            <span asp-validation-for="Module.ApprovalRouteTypeId" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label asp-for="Module.Controller" class="form-label"></label>
+                            <input asp-for="Module.Controller" class="form-control" placeholder="Module Controller" />
+                            <span asp-validation-for="Module.Controller" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label asp-for="Module.Action" class="form-label"></label>
+                            <input asp-for="Module.Action" class="form-control" placeholder="Module Action" />
+                            <span asp-validation-for="Module.Action" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label asp-for="Module.Icon" class="form-label"></label>
+                            <div class="input-group">
+                                <input asp-for="Module.Icon" class="form-control" placeholder="Module Icon" />
+                                <span class="input-group-text" id="txt_module_icon"></span>
+                            </div>
+                            <span asp-validation-for="Module.Icon" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label asp-for="Module.ParentModuleId" class="form-label"></label>
+                            <select class="form-control" asp-for="Module.ParentModuleId">
+                                <option value="">Select Parent Module...</option>
+                            </select>
+                            <span asp-validation-for="Module.ParentModuleId" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label asp-for="Module.Ordinal" class="form-label"></label>
+                            <input asp-for="Module.Ordinal" class="form-control" placeholder="Module Order" />
+                            <span asp-validation-for="Module.Ordinal" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" asp-for="Module.IsDisabled" />
+                                <label asp-for="Module.IsDisabled" class="form-check-label"></label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" asp-for="Module.IsVisible" />
+                                <label asp-for="Module.IsVisible" class="form-check-label"></label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" asp-for="Module.InMaintenance" />
+                                <label asp-for="Module.InMaintenance" class="form-check-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <hr class="my-2" />
+                            <div class="">
+                                <table class="table table-sm table-bordered w-100" id="tbl_module_stages">
+                                    <thead>
+                                        <tr class="text-center bg-soft-light">
+                                            <th hidden>Stage Code</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th>Stage Name</th>
+                                            <th>Stage Title</th>
+                                            <th>Return Stage</th>
+                                            <th>Approve Message</th>
+                                            <th>Reject Message</th>
+                                            <th>Required Count</th>
+                                            <th style="min-width:158px;">Approver</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                            <hr class="my-2" />
+                            <button type="button" class="btn btn-secondary btn-sm" id="btn_add_module_stage"><span class="fas fa-plus"></span> Add Module Stage</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-top">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" id="btn_save_module" class="btn btn-primary"><span class="fa fa-save"></span> Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Module Type modal content -->
+<div class="modal fade" tabindex="-1" id="moduleType-modal" role="form" aria-lablelby="moduleType-modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="overlay" id="moduleType-modalOverlay" hidden>
+                <span class='spinner-border spinner-border-lg'></span>
+            </div>
+            <div class="modal-header bg-soft-light border-bottom">
+                <h4 class="modal-title" id="moduleType-modalLabel"><span class="fas fa-plus"></span> Add Module Type</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form asp-action="SaveModuleType" asp-antiforgery="true" method="post" id="frm_moduleType" role="form">
+                <div class="modal-body">
+                    <div class="row gx-2">
+                        <div class="col-md-12 mb-2">
+                            <label asp-for="ModuleType.Id" class="form-label"></label>
+                            <input asp-for="ModuleType.Id" class="form-control" placeholder="Id" readonly />
+                            <span asp-validation-for="ModuleType.Id" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label asp-for="ModuleType.Description" class="form-label"></label>
+                            <input asp-for="ModuleType.Description" class="form-control" placeholder="Description" />
+                            <span asp-validation-for="ModuleType.Description" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label asp-for="ModuleType.Icon" class="form-label"></label>
+                            <div class="input-group">
+                                <input asp-for="ModuleType.Icon" class="form-control" placeholder="Icon" />
+                                <span class="input-group-text" id="txt_module_type_icon"></span>
+                            </div>
+                            <span asp-validation-for="ModuleType.Icon" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label asp-for="ModuleType.Ordinal" class="form-label"></label>
+                            <input asp-for="ModuleType.Ordinal" class="form-control" placeholder="Order" />
+                            <span asp-validation-for="ModuleType.Ordinal" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label asp-for="ModuleType.Controller" class="form-label"></label>
+                            <input asp-for="ModuleType.Controller" class="form-control" placeholder="Module Controller" />
+                            <span asp-validation-for="ModuleType.Controller" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label asp-for="ModuleType.Action" class="form-label"></label>
+                            <input asp-for="ModuleType.Action" class="form-control" placeholder="Module Action" />
+                            <span asp-validation-for="ModuleType.Action" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" asp-for="ModuleType.IsDisabled" />
+                                <label asp-for="ModuleType.IsDisabled" class="form-check-label"></label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" asp-for="ModuleType.IsVisible" />
+                                <label asp-for="ModuleType.IsVisible" class="form-check-label"></label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" asp-for="ModuleType.InMaintenance" />
+                                <label asp-for="ModuleType.InMaintenance" class="form-check-label"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer bg-soft-light border-top">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" id="btn_save_module_type" class="btn btn-primary"><span class="fa fa-save"></span> Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Links{
+    <link href="~/lib/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib/datatables.net-rowgroup/css/rowGroup.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib/datatables.net-searchHighlight/css/dataTables.searchHighlight.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/lib/selectize/css/selectize.bootstrap3.css" rel="stylesheet" type="text/css" />
+}
+
+@section Scripts{
+    <script src="~/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="~/lib/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/lib/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+    <script src="~/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/lib/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+    <script src="~/lib/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/lib/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="~/lib/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="~/lib/datatables.net-select/js/dataTables.select.min.js"></script>
+    <script src="~/lib/datatables.net-rowgroup/js/dataTables.rowGroup.min.js"></script>
+    <script src="~/lib/datatables.net-searchHighlight/js/dataTables.searchHighlight.min.js"></script>
+    <script src="~/lib/datatables.net-searchHighlight/js/jquery.highlight.js"></script>
+    <script src="~/lib/elipsis-js/elipsis.js"></script>
+
+    <script src="~/js/validation.bundle.js" asp-append-version="true"></script>
+    <script src="~/lib/selectize/js/standalone/selectize.min.js"></script>
+    <script src="~/lib/inputmask/dist/jquery.inputmask.min.js"></script>
+    <script src="~/lib/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/js/Setup/Module/ModuleManagementScript.js" asp-append-version="true"></script>
+}

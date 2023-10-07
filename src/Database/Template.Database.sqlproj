@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>Template.Database</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{a10eece3-9d91-4215-9fa8-253841fc64cc}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>Template.Database</RootNamespace>
+    <AssemblyName>Template.Database</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Tables" />
+    <Folder Include="Tables\Setup" />
+    <Folder Include="Tables\Setup\AuditTrail" />
+    <Folder Include="Tables\Setup\Company" />
+    <Folder Include="Tables\Setup\Role" />
+    <Folder Include="Tables\Setup\User" />
+    <Folder Include="Tables\Setup\Module" />
+    <Folder Include="Stored Procedures" />
+    <Folder Include="Stored Procedures\Setup" />
+    <Folder Include="PostDeploymentScript" />
+    <Folder Include="Stored Procedures\Setup\Module" />
+    <Folder Include="Stored Procedures\Setup\Role" />
+    <Folder Include="Stored Procedures\Setup\User" />
+    <Folder Include="Tables\Transaction" />
+    <Folder Include="Tables\Transaction\PurchaseOrder" />
+    <Folder Include="Tables\Setup\Vendor" />
+    <Folder Include="Tables\Setup\Tax" />
+    <Folder Include="Tables\Setup\Currency" />
+    <Folder Include="Tables\Setup\Country" />
+    <Folder Include="Tables\Setup\Document" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\Setup\AuditTrail\AuditTrail.sql" />
+    <Build Include="Tables\Setup\Company\Company.sql" />
+    <Build Include="Tables\Setup\Company\CompanyLogo.sql" />
+    <Build Include="Tables\Setup\Company\CompanySetting.sql" />
+    <Build Include="Tables\Setup\Role\Role.sql" />
+    <Build Include="Tables\Setup\User\User.sql" />
+    <Build Include="Tables\Setup\Module\Module.sql" />
+    <Build Include="Tables\Setup\Module\ModuleSetting.sql" />
+    <Build Include="Tables\Setup\Module\ModuleStage.sql" />
+    <Build Include="Tables\Setup\Module\ModuleStageApprover.sql" />
+    <Build Include="Tables\Setup\Module\ModuleType.sql" />
+    <Build Include="Stored Procedures\Setup\Module\spModule_Get.sql" />
+    <Build Include="Stored Procedures\Setup\Module\spModule_GetAll.sql" />
+    <Build Include="Stored Procedures\Setup\Module\spModule_GetByCode.sql" />
+    <Build Include="Stored Procedures\Setup\Module\spModule_GetByDesc.sql" />
+    <Build Include="Stored Procedures\Setup\Module\spModuleStage_GetAll.sql" />
+    <Build Include="Stored Procedures\Setup\Module\spModuleStage_GetByModuleId.sql" />
+    <Build Include="Stored Procedures\Setup\Module\spModuleStageApprover_GetByModuleCode.sql" />
+    <Build Include="Stored Procedures\Setup\Module\spModuleStageApprover_GetByModuleStageId.sql" />
+    <Build Include="Stored Procedures\Setup\Role\GetRoleAccess_GetById.sql" />
+    <Build Include="Stored Procedures\Setup\Role\spRoleAccess_GetByModuleCode.sql" />
+    <Build Include="Stored Procedures\Setup\Role\spRoleAccess_GetByRoleId.sql" />
+    <Build Include="Tables\Setup\Role\RoleAccess.sql" />
+    <Build Include="Stored Procedures\Setup\User\spUser_Get.sql" />
+    <Build Include="Stored Procedures\Setup\User\spUser_GetAll.sql" />
+    <Build Include="Stored Procedures\Setup\User\spUser_GetByUserName.sql" />
+    <Build Include="Stored Procedures\Setup\User\spUser_GetByUserRoleId.sql" />
+    <Build Include="Tables\Setup\User\UserApprover.sql" />
+    <Build Include="Tables\Setup\User\UserActivity.sql" />
+    <Build Include="Tables\Setup\User\UserToken.sql" />
+    <Build Include="Tables\Transaction\PurchaseOrder\PurchaseOrder.sql" />
+    <Build Include="Tables\Transaction\PurchaseOrder\PurchaseOrderDetail.sql" />
+    <None Include="PostDeploymentScript\Script.PostDeployment_PurchaseOrder.sql" />
+    <Build Include="Tables\Setup\Vendor\Vendor.sql" />
+    <Build Include="Tables\Setup\Tax\EwtType.sql" />
+    <Build Include="Tables\Setup\Tax\VatType.sql" />
+    <Build Include="Tables\Setup\Currency\Currency.sql" />
+    <Build Include="Tables\Setup\Currency\CurrencyRate.sql" />
+    <Build Include="Tables\Setup\Country\Country.sql" />
+    <None Include="PostDeploymentScript\Script.PostDeployment_Country.sql" />
+    <None Include="PostDeploymentScript\Script.PostDeployment_Currency.sql" />
+    <None Include="PostDeploymentScript\Script.PostDeployment_EwtType.sql" />
+    <None Include="PostDeploymentScript\Script.PostDeployment_VatType.sql" />
+    <Build Include="Tables\Setup\Document\Document.sql" />
+    <Build Include="Tables\Setup\Document\DocumentType.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Database.publish.xml" />
+    <None Include="Database.docker.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\Setup\User\UserRole.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeployment.sql" />
+    <None Include="PostDeploymentScript\Script.PostDeployment_User.sql" />
+    <None Include="PostDeploymentScript\Script.PostDeployment_Company.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="Template.Database.refactorlog" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,17 @@
+﻿@inject IStringLocalizer<SharedResources> localizer
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                &copy; @DateTime.Now.Year - @ViewData["MainTitle"]
+            </div>
+            <div class="col-md-6">
+                <div class="text-md-end footer-links d-none d-md-block">
+                    <a href="https://mnleistung.ph/about-us">@localizer["About"]</a>
+                    <a href="https://mnleistung.ph/services">@localizer["Services"]</a>
+                    <a href="https://mnleistung.ph/contact-us">@localizer["Contact Us"]</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,21 @@
+﻿@inject IStringLocalizer<SharedResources> localizer
+
+@{
+    ViewData["Title"] = localizer["Home"];
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="page-title">@ViewData["Title"]</h4>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div id="reports-div"></div>
+
+@section Scripts {
+    <script src="~/js/HomeScript.js" asp-append-version="true"></script>
+}

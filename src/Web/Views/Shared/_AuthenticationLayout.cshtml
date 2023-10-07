@@ -1,0 +1,36 @@
+﻿@inject IStringLocalizer<SharedResources> localizer
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Log In";
+    ViewData["MainTitle"] = localizer["MNL Template"];
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] | @ViewData["MainTitle"]</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="MNLeistung.de" name="author" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="~/favico.png">
+
+    <link href="~/css/login.bundle.css" rel="stylesheet" type="text/css" id="app-style" asp-append-version="true" />
+</head>
+
+<body class="loading authentication-bg bg-light vh-100">
+    <div class="account-pages vh-100">
+        <div class="container authentication-container">
+            <div class="card shadow-lg overflow-hidden m-0">
+               @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <script src="~/js/login.bundle.js" asp-append-version="true"></script>
+    <script src="~/js/validation.bundle.js" asp-append-version="true"></script>
+    <script src="~/js/Setup/Account/LoginScript.js" asp-append-version="true"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+﻿@inject IStringLocalizer<SharedResources> localizer
+
+@{
+    var lottieLink = "https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js";
+    ViewData["MainTitle"] = localizer["Robot Documentation"];
+}
+
+<html lang="en" data-bs-theme="light" data-layout-mode="fluid" data-menu-color="gradient" data-topbar-color="brand" data-layout-position="fixed" data-sidenav-size="default" data-lt-installed="true">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] | @ViewData["MainTitle"]</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="MNLeistung.de" name="author" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="~/favico.png">
+
+    <!-- Thirdparty css -->
+    <link rel="stylesheet" href="~/css/thirdparty.bundle.css" id="app-style" asp-append-version="true" />
+</head>
+
+<body class="authentication-bg-img" data-sidebar-size="default" data-layout-width="fluid" data-layout-menu-position="fixed" data-sidebar-color="light" data-topbar-color="dark" style="visibility: visible; opacity: 1;">
+    <div class="bg-overlay"></div>
+
+    <div class="mt-5 mb-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body p-3">
+                            <script src="@lottieLink"></script>
+                            <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_inueopnr.json" background="transparent" speed="0.5" style="height: 65vh;" loop autoplay></lottie-player>
+                            <div class="auth-logo">
+                                <a href="index.html" class="logo logo-dark text-center">
+                                    <span class="logo-lg">
+                                        <img src="~/Files/logo/eiFOS.png" alt="" height="22">
+                                    </span>
+                                </a>
+
+                                <a href="index.html" class="logo logo-light text-center">
+                                    <span class="logo-lg">
+                                        <img src="~/Files/eiFOS_Logo_2022/2_eiFOS_without border_black text.png" alt="" height="22">
+                                    </span>
+                                </a>
+                            </div>
+                            @RenderBody()
+                        </div>
+
+                    </div> <!-- end card-body -->
+                    <!-- end card -->
+
+                </div> <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end page -->
+
+    <footer class="footer footer-alt">
+        <script>document.write(new Date().getFullYear())</script> &copy; Robot Documentation Powered by <a href="https://mnleistung.de" class="link-dark text-decoration-underline">MNLeistung.de</a>
+    </footer>
+
+    <!-- Thirdparty js -->
+    <script src="~/js/site.thirdparty.bundle.js" asp-append-version="true"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", false)
+</body>
+</html>

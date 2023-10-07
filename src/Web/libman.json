@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "defaultProvider": "filesystem",
+  "libraries": [
+    {
+      "library": "node_modules/devextreme/dist/css/icons/",
+      "destination": "wwwroot/css/DevExpress/Icons",
+      "files": [
+        "dxiconsmaterial.ttf",
+        "dxiconsmaterial.woff",
+        "dxiconsmaterial.woff2",
+        "dxicons.ttf",
+        "dxicons.woff2",
+        "dxicons.woff"
+      ]
+    },
+    {
+      "library": "node_modules/bootstrap-icons/font/fonts/",
+      "destination": "wwwroot/css/fonts",
+      "files": [
+        "bootstrap-icons.woff",
+        "bootstrap-icons.woff2"
+      ]
+    },
+    {
+      "provider": "unpkg",
+      "library": "@microsoft/signalr@latest",
+      "destination": "wwwroot/lib/signalr/",
+      "files": [
+        "dist/browser/signalr.js",
+        "dist/browser/signalr.js.map",
+        "dist/browser/signalr.min.js",
+        "dist/browser/signalr.min.js.map"
+      ]
+    }
+  ]
+}

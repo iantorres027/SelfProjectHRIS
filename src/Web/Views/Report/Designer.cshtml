@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Report Designer";
+
+    var designerRender = Html.DevExpress().ReportDesigner("reportDesigner")
+        .Height("100%")
+        .Bind(Model.ReportDesignerModel);
+
+}
+
+<div class="d-flex flex-column" style="height:85vh;">
+    @designerRender.RenderHtml()
+</div>
+
+@section Scripts{
+    <link rel="stylesheet" href="~/css/DevExpress/dx-reporting-skeleton-screen.css" />
+    <link rel="stylesheet" href="~/css/DevExpress/viewer.part.bundle.css" />
+    <link rel="stylesheet" href="~/css/DevExpress/designer.part.bundle.css" />
+    <link rel="stylesheet" href="~/css/DevExpress/dx.material.blue.light.bundle.css" id="devExpressThemeBundle" />
+
+    <script src="~/js/DevExpress/reporting.thirdparty.bundle.js"></script>
+    <script src="~/js/DevExpress/viewer.part.bundle.js"></script>
+    <script src="~/js/DevExpress/designer.part.bundle.js"></script>
+    <script src="~/js/DevExpress/devexpress.override.js"></script>
+
+    @designerRender.RenderScripts()
+}

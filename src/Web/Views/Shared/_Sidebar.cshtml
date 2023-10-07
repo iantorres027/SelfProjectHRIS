@@ -1,0 +1,49 @@
+﻿@inject IStringLocalizer<SharedResources> localizer
+<div class="leftside-menu">
+
+    <!-- Brand Logo Light -->
+    <a href="index.html" class="logo logo-light">
+        <span class="logo-lg">
+            <img src="~/images/eiFOSAssets/Logo/3_eiFOS_with border.png" alt="logo" style="height:40px;">
+        </span>
+        <span class="logo-sm">
+            <img src="~/images/eiFOSAssets/Logo/6_ei.png" alt="small logo">
+        </span>
+    </a>
+
+    <!-- Brand Logo Dark -->
+    <a href="index.html" class="logo logo-dark">
+        <span class="logo-lg">
+            <img src="~/images/eiFOSAssets/Logo/4_eiFOS_without border.png" alt="dark logo" style="height:40px;">
+        </span>
+        <span class="logo-sm">
+            <img src="~/images/companylogo/inpro_logo_small.svg" alt="small logo">
+        </span>
+    </a>
+
+    <!-- Full Sidebar Menu Close Button -->
+    <div class="button-close-fullsidebar">
+        <i class="ri-close-fill align-middle"></i>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="h-100" id="leftside-menu-container" data-simplebar>
+
+        <!--- Sidemenu -->
+        <ul class="side-nav">
+
+            <li class="side-nav-title">@localizer["Navigation"]</li>
+
+            <li class="side-nav-item">
+                <a asp-controller="Home" asp-action="Index" class="side-nav-link">
+                    <i class="fe-home"></i>
+                    <span> @localizer["Home"] </span>
+                </a>
+            </li>
+        </ul>
+        <!--- End Sidemenu -->
+
+        <div class="clearfix"></div>
+    </div>
+    <!-- End Sidebar -->
+</div>

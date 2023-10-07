@@ -1,0 +1,143 @@
+﻿{
+   "CodeGenerationMode": 3,
+   "ContextClassName": "MNLTemplateDBContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": "Persistence",
+   "OutputPath": null,
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "Template.Infrastructure",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 1,
+   "T4TemplatePath": null,
+   "Tables": [
+      {
+         "Name": "[dbo].[AuditTrail]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Company]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[CompanyLogo]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[CompanySetting]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Country]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Currency]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[CurrencyRate]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Document]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[DocumentType]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[EwtType]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Module]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ModuleSetting]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ModuleStage]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ModuleStageApprover]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ModuleType]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PurchaseOrder]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PurchaseOrderDetail]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Role]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[RoleAccess]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[User]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[UserActivity]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[UserApprover]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[UserRole]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[UserToken]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[VatType]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Vendor]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "..\\Database\\Template.Database.sqlproj",
+   "UncountableWords": null,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": true,
+   "UseDateOnlyTimeOnly": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": true,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSchemaNamespaces": false,
+   "UseSpatial": false,
+   "UseT4": false
+}

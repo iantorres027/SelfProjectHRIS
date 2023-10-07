@@ -1,0 +1,41 @@
+{
+  "Serilog": {
+    "Using": [ "Serilog.Sinks.Console", "Serilog.Sinks.File" ],
+    "Enrich": [ "FromLogContext", "WithMachineName", "WithThreadId" ],
+    "MinimumLevel": {
+      "Default": "Information",
+      "Override": {
+        "Microsoft": "Warning",
+        "Microsoft.Hosting.Lifetime": "Information"
+      }
+    },
+    "WriteTo": [
+      {
+        "Name": "File",
+        "Args": {
+          "path": "logs/error-log.txt",
+          "rollingInterval": "Day",
+          "outputTemplate": "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff} {Level:u3}] {Message:lj}{NewLine}{Exception}",
+          "filter": "ByIncludingOnly({Level:Error})"
+        }
+      },
+      {
+        "Name": "File",
+        "Args": {
+          "path": "logs/info-log.txt",
+          "rollingInterval": "Day",
+          "outputTemplate": "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff} {Level:u3}] {Message:lj}{NewLine}{Exception}",
+          "filter": "ByExcluding({Level:Error})"
+        }
+      },
+      {
+        "Name": "Console",
+        "Args": {
+          "outputTemplate": "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff} {Level:u3}] {Message:lj}{NewLine}{Exception}",
+          "restrictedToMinimumLevel": "Information"
+        }
+      }
+    ]
+  }
+}
+

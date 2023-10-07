@@ -1,0 +1,59 @@
+﻿@inject IStringLocalizer<SharedResources> localizer
+
+@{
+    Layout = null;
+  
+    ViewData["MainTitle"] = localizer["Robot Documentation"];
+}
+
+<html lang="en" data-bs-theme="light" data-layout-mode="fluid" data-menu-color="gradient" data-topbar-color="brand" data-layout-position="fixed" data-sidenav-size="default" data-lt-installed="true">
+<head>
+    <meta charset="utf-8" />
+    <title>404 - Page not Found  | @ViewData["MainTitle"]</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="MNLeistung.de" name="author" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="~/favico.png">
+
+    <!-- Thirdparty css -->
+    <link rel="stylesheet" href="~/css/thirdparty.bundle.css" id="app-style" asp-append-version="true" />
+</head>
+
+<body class="authentication-bg-img" data-sidebar-size="default" data-layout-width="fluid" data-layout-menu-position="fixed" data-sidebar-color="light" data-topbar-color="dark" style="visibility: visible; opacity: 1;">
+    <div class="bg-overlay"></div>
+
+    <div class="mt-5 mb-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="text-center">
+                        <h1 class=" text-danger monospace" style="font-size: 14em;">404</h1>
+                        <h2 class="text-uppercase text-primary mt-4">Page Not Found</h2>
+                        <p class="text-muted mt-4 ">
+                            It's looking like you may have taken a wrong turn. Don't worry... it
+                            happens to the best of us. You might want to check your internet connection. Here's a
+                            little tip that might help you get back on track.
+                        </p>
+
+                        <a asp-action="Index" class="btn btn-primary waves-effect waves-light mt-4"> Return Home</a>
+                        <!-- <p class="">Return to <a href="index.html" class="btn btn-primary waves-effect waves-light"><b>Home</b></a></p> -->
+                    </div>
+                </div> <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end page -->
+
+    <footer class="footer footer-alt">
+        <script>document.write(new Date().getFullYear())</script> &copy; Robot Documentation Powered by <a href="https://mnleistung.de" class="link-dark text-decoration-underline"> MNLeistung.de</a>
+    </footer>
+
+    <!-- Thirdparty js -->
+    <script src="~/js/site.thirdparty.bundle.js" asp-append-version="true"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

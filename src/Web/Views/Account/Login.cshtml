@@ -1,0 +1,125 @@
+﻿@inject IStringLocalizer<SharedResources> localizer
+
+@model LoginViewModel
+
+@{
+    Layout = "_AuthenticationLayout";
+    ViewData["Title"] = "Log In";
+}
+
+<div class="card-body p-0">
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 px-4 pe-md-3 pt-3 pb-5 position-relative">
+            <div class="auth-logo">
+                <a asp-controller="Home" asp-action="Index" class="logo logo-dark">
+                    <img src="~/images/companyLogo/mnl.png" alt="" height="80">
+                </a>
+            </div>
+
+            <h3 class="text-dark mt-3 mb-1 ">Admin Portal</h3>
+            <p class="m-0">Welcome back! Login to your account.</p>
+            <p class="text-muted mb-4">Enter your Username and Password to start your session.</p>
+
+            <form asp-controller="Account" asp-action="Login" method="post" asp-antiforgery="true" id="frmLogin" asp-route-returnurl="@Model.ReturnUrl">
+                <input type="hidden" asp-for="ReturnUrl" />
+                <div class="mb-2">
+                    <label asp-for="UserName" class="form-label"></label>
+                    <input class="form-control " type="text" asp-for="UserName" placeholder="Enter your User Name">
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+
+                <div class="mb-2">
+                    <label asp-for="Password" class="form-label"></label>
+                    <div class="input-group input-group-merge">
+                        <input class="form-control " asp-for="Password" placeholder="Enter your Password">
+                        <div class="input-group-text " data-password="false">
+                            <span class="password-eye"></span>
+                        </div>
+                    </div>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="mb-2">
+                    <label asp-for="CompanyId" class="form-label"></label>
+                    <select class="form-select" asp-for="CompanyId" style="width:100%;">
+                        <option value="">Select Company...</option>
+                    </select>
+                    <span asp-validation-for="CompanyId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <input asp-for="RememberMe" type="checkbox" value="true" />
+                    <label asp-for="RememberMe" class="form-label"></label>
+                    <span asp-validation-for="RememberMe" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3" id="message"></div>
+
+                <div class="text-center d-grid">
+                    <button type="submit" class="btn btn-primary"> Log In </button>
+                </div>
+            </form>
+
+            <div class="mt-2 mb-5 text-center">
+                <a asp-action="ForgotPassword" class="text-muted ms-1">Forgot your password?</a>
+            </div>
+
+            <footer class="footer footer-alt px-4 pe-md-3">
+                <div class="row">
+                    <div class="col-6 col-xl-9 text-start my-auto">
+                        <script>document.write(new Date().getFullYear())</script> &copy; Powered by <a href="https://www.mnleistung.de" class="link-dark text-decoration-underline fw-medium">MNLeistung</a>
+                    </div>
+                    <div class="col-6 col-xl-3 text-end my-auto">
+                        @* change logo accordingly *@
+                        <img src="~/images/eiFOSAssets/Logo/4_eiFOS_without border.png" alt="" height="25">
+                    </div>
+                    <div class="col-6 col-xl-9 text-start my-auto">
+                        (Version @GetType().Assembly.GetName().Version.ToString())
+                    </div>
+                    <div class="col-6 col-xl-3 text-end my-auto"></div>
+                </div>
+            </footer>
+        </div>
+        <div class="features d-none d-md-block col-md-6 col-lg-8 p-0">
+            <div id="carouselExampleIndicators" class="carousel slide h-100" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner h-100">
+                    <div class="carousel-item h-100 active" data-bs-interval="10000" style="background-image: url(@Url.Content("~/images/eiFOSAssets/Slide/1.jpg"));">
+                        <div class="h-100 pt-3">
+                            <div class="feature-container text-white p-4 pt-2">
+                                <div class="p-2 rounded" style="background-color: #fff; background-color: rgb(255 205 118 / 60%)" hidden>
+                                    <p class="feature-title"></p>
+                                    <p class="feature-description"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item h-100" data-bs-interval="10000" style="background-image: url(@Url.Content("~/images/eiFOSAssets/Slide/2.jpg"));">
+                        <div class="h-100 pt-3">
+                            <div class="feature-container text-white p-4 pt-2">
+                                <div class="p-2 rounded" style="background-color: #fff; background-color: rgb(255 205 118 / 60%)" hidden>
+                                    <p class="feature-title"></p>
+                                    <p class="feature-description"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item h-100" data-bs-interval="10000" style="background-image: url(@Url.Content("~/images/eiFOSAssets/Slide/3.jpg"));">
+                        <div class="h-100 pt-3">
+                            <div class="feature-container text-white p-4 pt-2">
+                                <div class="p-2 rounded" style="background-color: #fff; background-color: rgb(255 205 118 / 60%)">
+                                    <p class="feature-title">Secure your transactions.</p>
+                                    <p class="feature-description">Your data is important to us, here at <strong>eiFOS</strong> we make sure that your data is secured and has daily backups in case something happened.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+﻿@using Microsoft.AspNetCore.Builder;
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.Extensions.Options
+@inject IOptions<RequestLocalizationOptions> LocalizationOptions
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var currentLanguage = requestCulture?.RequestCulture.UICulture.Parent.ToString();
+    var cultureItems = LocalizationOptions.Value.SupportedUICultures
+        .Select(c => new { Value = c.Name, Text = c.DisplayName, c.Parent })
+        .ToList();
+    var returnUrl = string.IsNullOrEmpty(Context.Request.Path)
+        ? "~/"
+        : $"~{Context.Request.Path.Value}{Context.Request.QueryString}";
+}
+
+<li class="dropdown">
+    <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+        <img src="~/template/CodeFox/images/flags/@(currentLanguage).jpg" alt="flag-icon" height="16">
+    </a>
+    <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated">
+
+        @foreach (var culture in cultureItems)
+        {
+            <!-- item-->
+            <a asp-controller="Localization" asp-action="SetLanguage" asp-route-culture="@culture.Value" asp-route-returnUrl="@returnUrl" class="dropdown-item  @(culture.Parent.ToString() == currentLanguage ? "active" : "")">
+                <img src="~/template/CodeFox/images/flags/@(culture.Parent).jpg" alt="flg-icon" class="me-1" height="12"> <span class="align-middle">@culture.Text</span>
+            </a>
+        }
+    </div>
+</li>

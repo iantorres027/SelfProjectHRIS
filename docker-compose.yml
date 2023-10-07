@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  template.web:
+    image: ${DOCKER_REGISTRY-}templateweb
+    build:
+      context: .
+      dockerfile: src/Web/Dockerfile
+
+  database:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - MSSQL_SA_PASSWORD=Administrator@2023
+      - ACCEPT_EULA=Y
+    volumes:
+      - mssql:/var/lib/mssql/data
+    ports:
+      - 1433:1433
+
+volumes:
+  mssql:

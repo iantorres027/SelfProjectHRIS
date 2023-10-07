@@ -1,0 +1,24 @@
+﻿@model ViewerModel
+@{
+    ViewData["Title"] = "Report Viewer";
+
+    var viewerRender = Html.DevExpress().WebDocumentViewer("DocumentViewer")
+        .Height("100%")
+        .Bind(Model.ViewerModelToBind);
+}
+
+<div class="" style="height:85vh;">
+    @viewerRender.RenderHtml()
+</div>
+
+@section Scripts{
+    <link rel="stylesheet" href="~/css/DevExpress/dx-reporting-skeleton-screen.css" />
+    <link rel="stylesheet" href="~/css/DevExpress/viewer.part.bundle.css" />
+    <link rel="stylesheet" href="~/css/DevExpress/dx.material.blue.light.bundle.css" id="devExpressThemeBundle" />
+
+    <script src="~/js/DevExpress/reporting.thirdparty.bundle.js"></script>
+    <script src="~/js/DevExpress/viewer.part.bundle.js"></script>
+    <script src="~/js/DevExpress/devexpress.override.js"></script>
+
+    @viewerRender.RenderScripts()
+}

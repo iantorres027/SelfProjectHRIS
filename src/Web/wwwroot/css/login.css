@@ -1,0 +1,66 @@
+/* Login Template 1 */
+.authentication-bg .carousel-item {
+    background-position: center 75%;
+    background-size: cover;
+}
+
+/* Login Template 2 */
+/* .authentication-bg .carousel-item {
+    background-position: -100% 75%;
+} */
+
+.authentication-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.authentication-bg .carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    margin: 0 10px;
+    border: 0;
+    border-radius: 50%;
+    /* background-color: #faae42; */
+}
+
+.authentication-bg .carousel-indicators .active {
+    width: 50px;
+    border-radius: 10px;
+}
+
+.authentication-bg .carousel-item .feature-container {
+    text-align: center;
+}
+
+    .authentication-bg .carousel-item .feature-container .feature-title {
+        color: #303476;
+        font-size: 23px;
+        /* font-size: 20px; Login Template 3 */
+        font-weight: 600;
+    }
+
+    .authentication-bg .carousel-item .feature-container .feature-description {
+        padding: 0 15px;
+        color: #343a40;
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+@media (min-width: 1200px) {
+    .authentication-bg .carousel-item .feature-container .feature-title {
+        font-size: 28px;
+    }
+
+    .authentication-bg .carousel-item .feature-container .feature-description {
+        padding: 0 230px;
+        font-size: 18px;
+    }
+
+    /* Login Template 3 */
+    .authentication-bg .carousel-item .feature-container .feature-description {
+        padding: 0 100px;
+        font-size: 18px;
+    }
+}
